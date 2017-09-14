@@ -1,0 +1,35 @@
+<?php
+  include("connect.php");
+?>
+<?php
+  include("./template/doctype.php");
+?>
+  <body>
+    <!--HEADER-->
+    <?php
+      include("./template/header.php");
+    ?>
+    <!--HEADER-->
+    <!--SLIDE-->
+    <?php
+      include("./template/slide.php");
+    ?>
+    <!--SLIDE-->
+
+    <!--NEWSPUBLIC-->
+    <?php
+      include("./template/component/homepage/newspublic.php");
+    ?>
+    <!--NEWPUBLIC-->
+    <!---SEC_NEWS_LINK-->
+    <?php
+      include("./template/component/homepage/secnewlink.php");
+    ?>
+    <!-----SEC_NEWS_LINK----->
+    <!-----SEC_NEWS_LINK----->
+    <?php
+      include("./template/footer.php");
+    ?>
+    <!-----SEC_NEWS_LINK----->
+  </body>
+</html>
