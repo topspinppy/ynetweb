@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.4.13.1
+- https://www.phpmyadmin.net
+-
+- Host: localhost
+- Generation Time: Sep 14, 2017 at 10:48 PM
+- Server version: 5.6.12
+- PHP Version: 5.5.30
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="ynetbkk_ynet" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="acadamic">
+                CREATE TABLE `acadamic` (
+                  `id_acadamic` int(4) NOT NULL,
+                  `img_acadamic` varchar(200) DEFAULT 'noimg.jpg',
+                  `name_acadamic` text NOT NULL,
+                  `name_positions` text NOT NULL,
+                  PRIMARY KEY (`id_acadamic`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="added">
+                CREATE TABLE `added` (
+                  `id_added` int(3) NOT NULL,
+                  `id_admin` int(3) NOT NULL,
+                  `id_news` int(11) NOT NULL,
+                  PRIMARY KEY (`id_added`),
+                  KEY `id_news` (`id_news`),
+                  KEY `id_admin` (`id_admin`),
+                  CONSTRAINT `added_ibfk_1` FOREIGN KEY (`id_news`) REFERENCES `news` (`id_news`),
+                  CONSTRAINT `added_ibfk_2` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="admin">
+                CREATE TABLE `admin` (
+                  `id_admin` int(3) NOT NULL,
+                  `name_admin` varchar(15) NOT NULL,
+                  `username_admin` varchar(15) NOT NULL,
+                  `password_admin` varchar(15) NOT NULL,
+                  PRIMARY KEY (`id_admin`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="backup_logs">
+                CREATE TABLE `backup_logs` (
+                  `id_backup_logs` varchar(32) NOT NULL,
+                  `backup_file` varchar(256) NOT NULL,
+                  `backup_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                  `user_key` char(32) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="components">
+                CREATE TABLE `components` (
+                  `id` int(100) NOT NULL,
+                  `name_components` text NOT NULL,
+                  `data` text,
+                  `data2` text NOT NULL,
+                  `status` int(1) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="member">
+                CREATE TABLE `member` (
+                  `id_member` int(10) NOT NULL AUTO_INCREMENT,
+                  `username` varchar(200) DEFAULT NULL,
+                  `password` varchar(20) DEFAULT NULL,
+                  `name` varchar(150) NOT NULL,
+                  `email` varchar(200) NOT NULL,
+                  `verify` int(11) NOT NULL,
+                  `facebook_id` varchar(50) DEFAULT NULL,
+                  `link` varchar(250) DEFAULT NULL,
+                  `date` datetime DEFAULT NULL,
+                  `picture` varchar(250) NOT NULL,
+                  `type` varchar(200) DEFAULT NULL,
+                  PRIMARY KEY (`id_member`),
+                  UNIQUE KEY `email` (`email`),
+                  UNIQUE KEY `username` (`username`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="news">
+                CREATE TABLE `news` (
+                  `id_news` int(10) NOT NULL AUTO_INCREMENT,
+                  `head_news` text NOT NULL,
+                  `description_news` text NOT NULL,
+                  `images` varchar(200) DEFAULT 'noimg.jpg',
+                  `id_type_news` int(15) NOT NULL,
+                  `doc_download` text NOT NULL,
+                  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                  `admin_name` text NOT NULL,
+                  `news_status` int(1) NOT NULL,
+                  PRIMARY KEY (`id_news`),
+                  KEY `id_type_news` (`id_type_news`),
+                  CONSTRAINT `news_ibfk_1` FOREIGN KEY (`id_type_news`) REFERENCES `type_news` (`id_type_news`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="slideshow">
+                CREATE TABLE `slideshow` (
+                  `slide_key` int(100) NOT NULL AUTO_INCREMENT,
+                  `slide_file` varchar(256) NOT NULL,
+                  `slide_link` text NOT NULL,
+                  `slide_status` tinyint(1) NOT NULL,
+                  `slide_insert` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `uploadby` text NOT NULL,
+                  PRIMARY KEY (`slide_key`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="type_news">
+                CREATE TABLE `type_news` (
+                  `id_type_news` int(15) NOT NULL AUTO_INCREMENT,
+                  `name_type_news` text NOT NULL,
+                  PRIMARY KEY (`id_type_news`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="webstats">
+                CREATE TABLE `webstats` (
+                  `date_visited` date NOT NULL,
+                  `ip` varchar(30) NOT NULL,
+                  `browser` varchar(20) DEFAULT NULL,
+                  `os` varchar(20) DEFAULT NULL,
+                  PRIMARY KEY (`date_visited`,`ip`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'ynetbkk_ynet'
+    -->
+    <database name="ynetbkk_ynet">
+        <!-- Table acadamic -->
+        <table name="acadamic">
+            <column name="id_acadamic">1001</column>
+            <column name="img_acadamic">noimg.jpg</column>
+            <column name="name_acadamic">พชรพรรษ์ ประจวบลาภ</column>
+            <column name="name_positions">ประธานเครือข่ายยุวทัศน์ กรุงเทพมหานคร</column>
+        </table>
+        <table name="acadamic">
+            <column name="id_acadamic">1002</column>
+            <column name="img_acadamic">noimg.jpg</column>
+            <column name="name_acadamic">กาญจนา วิจิตรบูรพา</column>
+            <column name="name_positions">รองประธานเครือข่ายยุวทัศน์ กรุงเทพมหานคร</column>
+        </table>
+        <table name="acadamic">
+            <column name="id_acadamic">1003</column>
+            <column name="img_acadamic">noimg.jpg</column>
+            <column name="name_acadamic">รวิศุทธ์ คณิตกุลเศรษฐ์</column>
+            <column name="name_positions">รองประธานเครือข่ายยุวทัศน์ กรุงเทพมหานคร</column>
+        </table>
+        <table name="acadamic">
+            <column name="id_acadamic">1004</column>
+            <column name="img_acadamic">noimg.jpg</column>
+            <column name="name_acadamic">นายสุรเชษฐ์ โพธิ์แสง</column>
+            <column name="name_positions">รองประธานเครือข่ายยุวทัศน์ กรุงเทพมหานคร</column>
+        </table>
+        <table name="acadamic">
+            <column name="id_acadamic">1005</column>
+            <column name="img_acadamic">noimg.jpg
+
+</column>
+            <column name="name_acadamic">เพชรมงคล วัสสุวรรณ</column>
+            <column name="name_positions">ผู้ช่วยประธานเครือข่ายยุวทัศน์ กรุงเทพมหานคร</column>
+        </table>
+        <table name="acadamic">
+            <column name="id_acadamic">1006</column>
+            <column name="img_acadamic">noimg.jpg</column>
+            <column name="name_acadamic">ปารณัท กลิ่นหอม</column>
+            <column name="name_positions">ที่ปรึกษาประธานเครือข่ายยุวทัศน์ กรุงเทพมหานคร</column>
+        </table>
+        <table name="acadamic">
+            <column name="id_acadamic">1007</column>
+            <column name="img_acadamic">noimg.jpg</column>
+            <column name="name_acadamic">ยุวทัศน์ กรุงเทพ</column>
+            <column name="name_positions">เลขานุการประธานเครือข่ายยุวทัศน์ กรุงเทพมหานคร</column>
+        </table>
+        <!-- Table added -->
+        <!-- Table admin -->
+        <table name="admin">
+            <column name="id_admin">0</column>
+            <column name="name_admin">patcharapan </column>
+            <column name="username_admin">patcharapan</column>
+            <column name="password_admin">123465</column>
+        </table>
+        <table name="admin">
+            <column name="id_admin">1</column>
+            <column name="name_admin">metchanon</column>
+            <column name="username_admin">metchanon</column>
+            <column name="password_admin">123456</column>
+        </table>
+        <table name="admin">
+            <column name="id_admin">2</column>
+            <column name="name_admin">pr ynet</column>
+            <column name="username_admin">admin</column>
+            <column name="password_admin">1234</column>
+        </table>
+        <!-- Table backup_logs -->
+        <!-- Table components -->
+        <table name="components">
+            <column name="id">1</column>
+            <column name="name_components">ข่าวกิจกรรม</column>
+            <column name="data"></column>
+            <column name="data2"></column>
+            <column name="status">0</column>
+        </table>
+        <table name="components">
+            <column name="id">2</column>
+            <column name="name_components">ข่าวประชาสัมพันธ์</column>
+            <column name="data"></column>
+            <column name="data2"></column>
+            <column name="status">0</column>
+        </table>
+        <table name="components">
+            <column name="id">3</column>
+            <column name="name_components">ข่าวจัดซื้อจัดจ้าง</column>
+            <column name="data"></column>
+            <column name="data2"></column>
+            <column name="status">1</column>
+        </table>
+        <table name="components">
+            <column name="id">4</column>
+            <column name="name_components">ดาวน์โหลดเอกสาร</column>
+            <column name="data"></column>
+            <column name="data2"></column>
+            <column name="status">0</column>
+        </table>
+        <table name="components">
+            <column name="id">5</column>
+            <column name="name_components">ยุวทัศน์ links</column>
+            <column name="data"></column>
+            <column name="data2"></column>
+            <column name="status">0</column>
+        </table>
+        <table name="components">
+            <column name="id">6</column>
+            <column name="name_components">ชื่อเว็บไซต์</column>
+            <column name="data">เครือข่ายยุวทัศน์ กรุงเทพมหานคร</column>
+            <column name="data2">YOUTH NETWORK OF BANGKOK</column>
+            <column name="status">0</column>
+        </table>
+        <table name="components">
+            <column name="id">7</column>
+            <column name="name_components">favicon</column>
+            <column name="data">0ff35d93a3dabef498b0a588d7f3840a.jpeg</column>
+            <column name="data2"></column>
+            <column name="status">0</column>
+        </table>
+        <!-- Table member -->
+        <table name="member">
+            <column name="id_member">12</column>
+            <column name="username">admin</column>
+            <column name="password">3135134162</column>
+            <column name="name">patcharapan prajuablap</column>
+            <column name="email">ynet-bangkok</column>
+            <column name="verify">0</column>
+            <column name="facebook_id">NULL</column>
+            <column name="link">NULL</column>
+            <column name="date">NULL</column>
+            <column name="picture"></column>
+            <column name="type">admin</column>
+        </table>
+        <table name="member">
+            <column name="id_member">51</column>
+            <column name="username">topspinppy</column>
+            <column name="password">432018</column>
+            <column name="name">ประยุทธ์ จันทรโอชา</column>
+            <column name="email">s5806021623049@email.kmutnb.ac.th</column>
+            <column name="verify">0</column>
+            <column name="facebook_id">NULL</column>
+            <column name="link">NULL</column>
+            <column name="date">NULL</column>
+            <column name="picture"></column>
+            <column name="type">member</column>
+        </table>
+        <table name="member">
+            <column name="id_member">52</column>
+            <column name="username">ynetbkk</column>
+            <column name="password">ynetbkk</column>
+            <column name="name">เครือข่ายยุวทัศน์ กรุงเทพมหานคร</column>
+            <column name="email">ynet-bangkok@hotmail.com</column>
+            <column name="verify">0</column>
+            <column name="facebook_id">NULL</column>
+            <column name="link">NULL</column>
+            <column name="date">NULL</column>
+            <column name="picture"></column>
+            <column name="type">admin</column>
+        </table>
+        <!-- Table news -->
+        <table name="news">
+            <column name="id_news">23</column>
+            <column name="head_news">ยทก.เข้าร่วมงานเปิดตัวศูนย์ชัวร์ก่อนแชร์ อสมท.</column>
+            <column name="description_news">วันนี้ (๐๓/๐๔/๒๕๖๐) เวลา ๑๔.๐๐ เครือข่ายยุวทัศน์ กรุงเทพมหานคร นำโดย นายพชรพรรษ์ ประจวบลาภ ประธานเครือข่ายยุวทัศน์ กรุงเทพมหานคร ร่วมงานเปิดตัวศูนย์ชัวร์ก่อนแชร์ ที่สำนักข่าวไทย อสมท. ร่วมกับกองทุนพัฒนาสื่อปลอดภัยและสร้างสรรค์ และหน่วยงานองค์กรพันธมิตร เพื่อเฝ้าระวังและตรวจสอบข้อมูลบนโลกออนไลน์</column>
+            <column name="images">201744_47966.jpg</column>
+            <column name="id_type_news">1</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-07-05 18:32:57</column>
+            <column name="admin_name">admin</column>
+            <column name="news_status">0</column>
+        </table>
+        <table name="news">
+            <column name="id_news">43</column>
+            <column name="head_news">ยทก.จัดกิจกรรมร่วมกับสภานักเรียนฯ</column>
+            <column name="description_news">เมื่อวันที่ 16 มิถุนายน 2560 เวลา 08.00 - 15.30 นาฬิกา เครือข่ายยุวทัศน์ กรุงเทพมหานคร ร่วมกับ สภานักเรียนโรงเรียนนนทบุรีวิทยาลัย จัดกิจกรรม &quot;ํYNET School&quot; โดยมีวัตถุประสงค์เพื่อให้นักเรียนในสภานศึกษาได้เรียนรู้เรื่องปัจจัยเสี่ยงในสังคม อาทิ เรื่องพิษภัยจากบุหรี่ การพนันออนไลน์ เพศศึกษา ตลอดจนเสริมสร้างนักเรียนให้เป็นเด็กดี มีคุณธรรม โดยมีนักเรียนเข้าร่วมกว่า 80 คน จัดขึ้น ณ ห้องประชุมชั้น 5 โรงเรียนนนทบุรีวิทยาลัย จังหวัดนนทบุรี</column>
+            <column name="images">2017619_53532.jpg</column>
+            <column name="id_type_news">1</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-07-06 13:55:47</column>
+            <column name="admin_name">admin</column>
+            <column name="news_status">0</column>
+        </table>
+        <table name="news">
+            <column name="id_news">59</column>
+            <column name="head_news">เช่ารถยนต์บรรทุก 1 ตัน 4 ประตู แบบ Double Cab จำนวน 2 คัน</column>
+            <column name="description_news">รายละเอียดดังไฟล์แนบ สามารถดาวน์โหลดได้ลิงค์ด้านล่าง</column>
+            <column name="images">2017826_61951.jpg</column>
+            <column name="id_type_news">3</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-07-11 18:29:34</column>
+            <column name="admin_name">admin</column>
+            <column name="news_status">0</column>
+        </table>
+        <table name="news">
+            <column name="id_news">61</column>
+            <column name="head_news">ยทก. จัดกิจกรรมปลูกป่าถวายในหลวง ร.9</column>
+            <column name="description_news">เมื่อวันอาทิตย์ที่ 3 กันยายน 2560 เวลา 11.30 นาฬิกา เครือข่ายยุวทัศน์ กรุงเทพมหานคร จัดกิจกรรมปลูกป่าถวายในหลวง รัชกาลที่ 9 โดยร่วมกับภาคประชาสังคมผู้ขับขี่รถยนต์ยี่ห้อ MG ปลูกต้นกล้าจำนวน 99 ต้น เพื่อถวายเป็นพระราชกุศลแด่พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดช ณ อุทยานแห่งชาติไทรโยค อำเภอไทรโยค จังหวัดกาญจนบุรี ซึ่งในอนาคตทางอุทยานแห่งชาติไทรโยคจะพัฒนาพื้นที่ตรงนี้ให้เป็นสถานที่ท่องเที่ยวตามรอยพระราชา ตลอดจนเป็นการสนองแนวพระราชดำริที่ทรงห่วงใยทรัพยากรป่าไม้ และสิ่งแวดล้อม</column>
+            <column name="images">201797_56865.jpg</column>
+            <column name="id_type_news">2</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-09-08 18:20:52</column>
+            <column name="admin_name">admin</column>
+            <column name="news_status">0</column>
+        </table>
+        <table name="news">
+            <column name="id_news">62</column>
+            <column name="head_news">ยทก.จัดประชุมโครงการ&quot;มีวินัย ช่วยลดอุบัติเหตุ&quot;</column>
+            <column name="description_news">วันพฤหัสบดีที่ 31 สิงหาคม 2560 เครือข่ายยุวทัศน์ กรุงเทพมหานคร ร่วมกับศูนย์คุณธรรม (องค์การมหาชน) และบริษัทเอ็มจี เซลส์ (ประเทศไทย) จัดประชุมปรึกษาหารือแนวทางการดำเนินโครงการ&quot;มีวินัย ช่วยลดอุบัติเหตุ&quot; ณ ห้องประชุม 1 ชั้น 16 ศูนย์คุณธรรม (องค์การมหาชน) โดยมีผู้แทนจากมหาวิทยาลัยรัฐและเอกชนเข้าร่วม การประชุมครั้งนี้มีวัตถุประสงค์เพื่อหารือแนวทางการมีส่วนร่วมของนักศึกษากับการสร้างวินัยบนท้องถนน ตลอดจนส่งเสริมทักษะการขับขี่รถยนต์ในระดับอุดุมศึกษา</column>
+            <column name="images">2017831_68391.jpg</column>
+            <column name="id_type_news">2</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-09-08 21:43:12</column>
+            <column name="admin_name">admin</column>
+            <column name="news_status">0</column>
+        </table>
+        <table name="news">
+            <column name="id_news">63</column>
+            <column name="head_news">ยทก. ประชุมปรึกษาหารือการจัดสมัชชาเด็กและเยาวชน ไทย-ลาว</column>
+            <column name="description_news">เมื่อระหว่างวันที่ 23 - 24 สิงหาคม 2560 เครือข่ายยุวทัศน์ กรุงเทพมหานคร นำโดย นายรวิศุทธ์ คณิตกุลเศรษฐ์ รองประธานเครือข่ายยุวทัศน์ กรุงเทพมหานคร พร้อมด้วยนายเมธชนนท์ ประจวบลาภ รองเลขาธิการเครือข่ายยุวทัศน์ กรุงเทพมหานคร นายรัฐธรรมนูญ ทั่งทอง หัวหน้าสำนักวิชาการและแผนงาน และนายสุริยันต์ ผาละนัด หัวหน้ากลุ่มอำนวยการและบริหาร เดินทางไปยัง สถานเอกอัครราชทูตไทย ณ กรุงเวียงจันทร์ สาธารณรัฐประชาธิปไตยประชาชนลาว เพื่อปรึกษาหารือการจัดประชุมสมัชชาเด็กและเยาวชนสองฝั่งโขง (ไทย-ลาว) โดยมีวัตถุประสงค์เพื่อแลกเปลี่ยนการทำงานและแนวทางการดำเนินงานด้านการควบคุมยาสูบของแต่ละประเทศ ตลอดจนสร้างเครือข่ายระหว่างแกนนำเด็กและเยาวชนทั้ง 2 ประเทศ ซึ่งมีกำหนดจัดประชุมขึ้นในระหว่างวันที่ 29 - 30 กันยายน 2560 ณ โรงแรมอัครวรรณ (ศูนย์การค้าอัครวรรณช๊อปปิ้งคอมเพล็กซ์) อำเภอเมือง จังหวัดหนองคาย</column>
+            <column name="images">2017826_61951.jpg</column>
+            <column name="id_type_news">2</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-09-08 21:44:21</column>
+            <column name="admin_name">admin</column>
+            <column name="news_status">0</column>
+        </table>
+        <table name="news">
+            <column name="id_news">65</column>
+            <column name="head_news">ศรีสะเกษเปิดตัว Gen Z สืบสานความดี ถวายแด่ในหลวงรัชกาลที่ 9 (มติชน) 15-12-59 
+</column>
+            <column name="description_news">http://www.matichon.co.th/news/394727</column>
+            <column name="images">noimg.jpg</column>
+            <column name="id_type_news">4</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-09-09 05:33:34</column>
+            <column name="admin_name"></column>
+            <column name="news_status">0</column>
+        </table>
+        <table name="news">
+            <column name="id_news">67</column>
+            <column name="head_news">เครือข่ายยุวทัศน์ฯ จัดกิจกรรมเซ็นใบหย่า เลิกบุหรี่ เนื่องในวันแห่งความรัก (ครอบครัวข่าว 3) 15-02-60</column>
+            <column name="description_news">https://goo.gl/KIWVLc</column>
+            <column name="images">noimg.jpg</column>
+            <column name="id_type_news">4</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-09-12 12:51:58</column>
+            <column name="admin_name">admin</column>
+            <column name="news_status">0</column>
+        </table>
+        <table name="news">
+            <column name="id_news">68</column>
+            <column name="head_news">ยุวทัศน์หนุนขับขี่ปลอดภัย (ข่าวสด) 21-11-59</column>
+            <column name="description_news">http://daily.khaosod.co.th/view_news.php?newsid=TURONWIzVXdOakl4TVRFMU9RPT0=&amp;sectionid=TURNeE1RPT0=&amp;day=TWpBeE5pMHhNUzB5TVE9PQ==</column>
+            <column name="images">noimg.jpg</column>
+            <column name="id_type_news">4</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-09-12 12:53:55</column>
+            <column name="admin_name">admin</column>
+            <column name="news_status">0</column>
+        </table>
+        <table name="news">
+            <column name="id_news">70</column>
+            <column name="head_news">ยุวทัศน์ฯ แถลงข่าวหลักสูตรคุ้มครองเด็กจากสื่อออนไลน์</column>
+            <column name="description_news">วันที่ 14 กันยายน 2560 เวลา 09.30 นาฬิกา นายสิรวิชญ์ โรจน์วัฒนาศิริ เลขาธิการเครือข่ายยุวทัศน์ กรุงเทพมหานคร   แถลงข่าวเปิดตัวหลักสูตรองค์กรผู้นำเยาวชนเพื่อการคุ้มครองเด็กและเยาวชนจากสื่อออนไลน์ ซึ่งเป็นการร่วมมือระหว่างเครือข่ายยุวทัศน์ กรุงเทพมหานคร และสถาบันกฎหมายสื่อดิจิทัล มหาวิทยาลัยเกษมบัณฑิต ทั้งนี้ยังมีพิธีลงนามบันทึกข้อตกลงความร่วมมือทางวิชาการร่วมกันอีกด้วย ภายในงานได้รับเกียรติจาก ดร.วัลลภ สุวรรณดี อธิการบดีมหาวิทยาลัยเกษมบัณฑิต และประธานที่ปรึกษาของผู้ว่าราชการกรุงเทพมหานคร  และนายธาดา เศวตศิลา กรรมการผู้ทรงคุณวุฒิศูนย์คุณธรรม (องค์การมหาชน) ร่วมเป็นสักขีพยาน</column>
+            <column name="images">25600914_๑๗๐๙๑๔_0163.jpg</column>
+            <column name="id_type_news">2</column>
+            <column name="doc_download"></column>
+            <column name="dates">2017-09-14 21:15:35</column>
+            <column name="admin_name">admin</column>
+            <column name="news_status">0</column>
+        </table>
+        <!-- Table slideshow -->
+        <table name="slideshow">
+            <column name="slide_key">2</column>
+            <column name="slide_file">king9.png</column>
+            <column name="slide_link">http://king.ynetbangkok.or.th</column>
+            <column name="slide_status">0</column>
+            <column name="slide_insert">2017-07-08 21:04:39</column>
+            <column name="uploadby"></column>
+        </table>
+        <table name="slideshow">
+            <column name="slide_key">4</column>
+            <column name="slide_file">215571971483770218381709500480036o.jpg</column>
+            <column name="slide_link">http://kidsdee.ynetbangkok.or.th</column>
+            <column name="slide_status">0</column>
+            <column name="slide_insert">2017-09-10 14:44:28</column>
+            <column name="uploadby">admin</column>
+        </table>
+        <table name="slideshow">
+            <column name="slide_key">5</column>
+            <column name="slide_file">BannerKilaThamDcopy(1).jpg</column>
+            <column name="slide_link">http://klatamdee.ynetbangkok.or.th</column>
+            <column name="slide_status">0</column>
+            <column name="slide_insert">2017-09-11 00:46:18</column>
+            <column name="uploadby">admin</column>
+        </table>
+        <!-- Table type_news -->
+        <table name="type_news">
+            <column name="id_type_news">1</column>
+            <column name="name_type_news">ข่าวประชาสัมพันธ์</column>
+        </table>
+        <table name="type_news">
+            <column name="id_type_news">2</column>
+            <column name="name_type_news">ข่าวกิจกรรม</column>
+        </table>
+        <table name="type_news">
+            <column name="id_type_news">3</column>
+            <column name="name_type_news">ข่าวจัดซื้อจัดจ้าง</column>
+        </table>
+        <table name="type_news">
+            <column name="id_type_news">4</column>
+            <column name="name_type_news">ข่าวจากสื่อ</column>
+        </table>
+        <!-- Table webstats -->
+        <table name="webstats">
+            <column name="date_visited">2017-06-09</column>
+            <column name="ip">::1</column>
+            <column name="browser">Chrome</column>
+            <column name="os">Unknown</column>
+        </table>
+    </database>
+</pma_xml_export>
