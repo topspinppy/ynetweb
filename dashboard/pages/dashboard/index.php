@@ -13,7 +13,7 @@
                 ?>
                 <div class="col-xs-9 text-right">
                     <div class="huge"><?php echo $result["news"]; ?></div>
-                    <div>New Comments!</div>
+                    <div>จำนวนข่าวในระบบ !</div>
                 </div>
             </div>
         </div>

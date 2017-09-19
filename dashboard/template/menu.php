@@ -22,6 +22,9 @@
                 <a href="index.php?file=slide"><i class="fa fa-picture-o fa-fw"></i> จัดการสไลด์</a>
             </li>
             <li>
+                <a href="index.php?file=manageaccount"><i class="fa fa-user fa-fw" aria-hidden="true"></i> จัดการสมาชิก</a>
+            </li>
+            <li>
                 <a href="index.php?file=config"><i class="fa fa-gear  fa-fw"></i> ตั้งค่าเว็บไซต์</a>
             </li>
         </ul>

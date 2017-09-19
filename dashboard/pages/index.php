@@ -27,6 +27,10 @@
                              {
                                 echo "<i class='fa fa-picture-o'></i> สไลด์";
                              }
+                             else if ($_GET['file'] == "manageaccount")
+                             {
+                                echo "<i class='fa fa-user fa-fw'></i>  จัดการสมาชิก";
+                             }
                              else if ($_GET['file'] == "config")
                              {
                                 echo "<i class='fa fa-gear  fa-fw'></i> ตั้งค่าเว็บไซต์";
