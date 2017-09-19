@@ -2,7 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>เครือข่ายยุวทัศน์ กรุงเทพมหานคร | Youth Network Of Bangkok</title>
+    <title>
+    <?php 
+    				$sqlfavicon = "SELECT * FROM `components` WHERE `id`= '6'";
+            $queryfavicon = mysqli_query($connect,$sqlfavicon) or die(mysqli_error($connect));
+            $resultfavicon = mysqli_fetch_array($queryfavicon,MYSQLI_ASSOC);
+            echo $resultfavicon["data"]." | ".$resultfavicon["data2"];
+    ?>
+    </title>
     <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1">
   	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
   	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.css">
